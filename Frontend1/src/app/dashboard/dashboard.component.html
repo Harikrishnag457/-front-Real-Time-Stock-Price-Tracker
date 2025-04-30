@@ -1,0 +1,63 @@
+<!-- dashboard.component.html -->
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside class="w-60 bg-[#313131] text-white flex flex-col justify-between py-6 px-4">
+    <div>
+      <h1 class="text-2xl font-bold mb-8 text-center">StoxFlick</h1>
+      <nav>
+        <ul class="w-full flex flex-col items-start gap-2">
+          <li
+            class="flex items-center justify-start space-x-2 font-semibold gap-2 w-full p-3 rounded-[8px] cursor-pointer hover:bg-[#484848] transition duration-200 ease-in-out">
+            <img src="assets/Vector.svg" alt="Home" class="w-5 h-5">
+            <span class="text-[14px]">Dashboard</span>
+          </li>
+          <li
+            class="flex items-center justify-start space-x-2 font-semibold gap-2 w-full p-3 rounded-[8px] cursor-pointer hover:bg-[#484848] transition duration-200 ease-in-out">
+            <img src="assets/heart-regular.svg" class="w-5 h-5" alt="Favorites">
+            <span class="text-[14px]">Favorites</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="text-sm space-y-3 flex flex-col items-center">
+      <p class="text-gray-100 mt-4 text-xs">&copy; 2025 StoxFlick, All Rights Reserved</p>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 px-10 py-6 bg-white">
+    <!-- Include the search component -->
+    <app-search></app-search>
+
+    <!-- Title -->
+    <h2 class="text-2xl font-bold mb-4">US STOCKS</h2>
+
+    <!-- Table -->
+    <div class="bg-white rounded-[8px] shadow-lg overflow-hidden">
+      <table class="min-w-full text-left">
+        <thead class="bg-[#F4F5F6] text-[#5a6772] text-[13px]">
+          <tr>
+            <th class="px-6 py-4">SYMBOL</th>
+            <th class="px-6 py-4">PRICE</th>
+            <th class="px-6 py-4">% CHANGE</th>
+            <th class="px-6 py-4">OPEN</th>
+            <th class="px-6 py-4">VOLUME</th>
+            <th class="px-6 py-4">PREVIOUS CLOSE</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm text-gray-800">
+          <tr *ngFor="let stock of stocks" class="border-t hover:bg-[#F4F4F4]">
+            <td class="px-6 py-4">{{stock.symbol}}</td>
+            <td class="px-6 py-4">{{stock.price}}</td>
+            <td class="px-6 py-4" [ngClass]="stock.change < 0 ? 'text-red-500':'text-green-600'">{{stock.change}}</td>
+            <td class="px-6 py-4">{{stock.open}}</td>
+            <td class="px-6 py-4">{{stock.volume}}</td>
+            <td class="px-6 py-4">{{stock.previousClose}}</td>
+          </tr>
+
+          <!-- Repeat for other rows -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
